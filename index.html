@@ -2,13 +2,10 @@
 	<head>
 		<meta charset="utf-8">
 		<style>
-			#circle{
-				width: 50px;
-				height: 50px;
-				left: 0px;
-				border-radius: 50px;
-				background-color: crimson;
-				position: relative;
+			canvas{
+				margin: 20px;
+				border: 4px solid crimson;
+				
 			}
 			body {
 				background-color: black;
@@ -20,33 +17,22 @@
 	</head>
 	<body>
 		
-		<div id="circle"></div>
+		<canvas id="animated-canvas" width="600" height="400"></canvas>
 		
 		<script>
-			var ol=0;
-			var isPlaying = false;
-			var circleInterval;
-			
-			function circleAnimation(time){
-				ol++;
-				document.getElementById("circle").style.left = ol + "px";
-				circleInterval = requestAnimationFrame(circleAnimation);
+
+
+			var canvas = document.getElementById("animated-canvas");
+			var context = canvas.getContext('2d');
+		
+			function drawCircle(){
+				context.fillStyle = "crimson";
+				context.beginPath();
+				context.arc(60, canvas.height/2, 25, 0, 2 * Math.PI);
+				context.fill();
 			}
 			
-			function mouseClicked(){
-				if(isPlaying){
-					isPlaying = false;
-					document.getElementById("circle").style.backgroundColor = "dimgrey";
-					cancelAnimationFrame(circleInterval);
-				}else{
-					isPlaying = true;
-					document.getElementById("circle").style.backgroundColor = "crimson";
-					circleInterval = requestAnimationFrame(circleAnimation);
-				}
-			}
-			
-			document.getElementById("circle").addEventListener("click", mouseClicked);
-			document.getElementById("circle").style.backgroundColor = "dimgrey";
+			drawCircle();
 		
 		</script>
 		
