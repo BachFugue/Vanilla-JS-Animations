@@ -5,6 +5,8 @@
 			canvas{
 				margin: 20px;
 				border: 4px solid crimson;
+				border-left: 20px solid crimson;
+				border-right: 20px solid crimson;
 				
 			}
 			body {
@@ -17,7 +19,7 @@
 	</head>
 	<body>
 		
-		<canvas id="animated-canvas" width="600" height="400"></canvas>
+		<canvas id="animated-canvas" width="200" height="800"></canvas>
 		
 		<script>
 
@@ -25,11 +27,14 @@
 			var canvas = document.getElementById("animated-canvas");
 			var context = canvas.getContext('2d');
 			var canvasInterval = requestAnimationFrame(canvasAnimation);
-			var circleX = 60;
+			var radius = 50;
+			var circleY = 60;
+			var velocity = 1;
+			var acceleration = 0.5;
 			
 			function canvasAnimation(){
-				circleX++;
-				drawCircle(circleX, canvas.height/2, 25);
+				circleY++;
+				drawCircle(canvas.width/2, circleY, radius);
 				canvasInterval = requestAnimationFrame(canvasAnimation);
 			}
 		
@@ -39,13 +44,24 @@
 				context.beginPath();
 				context.arc(x, y, s, 0, 2 * Math.PI);
 				context.fill();
+				velocity += acceleration;
+				circleY += velocity;
+				if(circleY > canvas.height + radius){
+					setTimeout(reset, 250);
+					
+				}
+			}
+			
+			function reset(){
+				circleY = 0 - radius - 10;
+				velocity = 1;
 			}
 			
 			function clearCanvas(){
 				context.clearRect(0, 0, canvas.width, canvas.height);
 			}
 			
-			drawCircle();
+			
 		
 		</script>
 		
