@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<style>
+			#circle{
+				width: 50px;
+				height: 50px;
+				left: 0px;
+				border-radius: 50px;
+				background-color: crimson;
+				position: relative;
+			}
+			body {
+				background-color: black;
+				padding-top: 20px;
+			}
+		</style>
+		
+		
+	</head>
+	<body>
+		
+		<div id="circle"></div>
+		
+		<script>
+			var ol=0;
+			var circleInterval = setInterval(circleAnimation, 50);
+			function circleAnimation(){
+				if( ol >= 4000/50 ){
+					document.getElementById("circle").style.backgroundColor = "dimgrey";
+					clearInterval(circleInterval);
+				}else{
+					ol++;
+					document.getElementById("circle").style.left = ol + "px";
+				}
+
+			}
+			
+		
+		</script>
+		
+		
+	</body>
+</html>
