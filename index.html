@@ -23,9 +23,14 @@
 		
 		<div id="web-animation"></div>
 		
+		
+		<button onclick="rotatingSquare.play()" type="button">Play</button>
+		<button onclick="rotatingSquare.pause()" type="button">Pause</button>
+		<button onclick="rotatingSquare.playbackRate+=0.2" type="button">Speed Up</button>
+		<button onclick="rotatingSquare.playbackRate-=0.2" type="button">Slow Down</button>
+		
 		<script>
-			var rotatingSquare = document.getElementById("web-animation");
-			rotatingSquare.animate(
+			var rotatingSquare = document.getElementById("web-animation").animate(
 				[
 					{ backgroundColor: '#000000', opacity: 1.0, transform: 'rotate(0deg) translate3D(0, 0, 0)' },
 					{ backgroundColor: '#440000', opacity: 0.3 },
