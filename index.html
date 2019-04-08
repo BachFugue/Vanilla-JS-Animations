@@ -2,64 +2,42 @@
 	<head>
 		<meta charset="utf-8">
 		<style>
-			canvas{
-				margin: 20px;
+			#web-animation{
+				background-color: black;
 				border: 4px solid crimson;
-				border-left: 20px solid crimson;
-				border-right: 20px solid crimson;
-				
+				width: 200px;
+				height: 200px;
+				margin: 5rem;
 			}
+			
 			body {
 				background-color: black;
 				padding-top: 20px;
 			}
+			
 		</style>
 		
 		
 	</head>
 	<body>
 		
-		<canvas id="animated-canvas" width="200" height="800"></canvas>
+		<div id="web-animation"></div>
 		
 		<script>
-
-
-			var canvas = document.getElementById("animated-canvas");
-			var context = canvas.getContext('2d');
-			var canvasInterval = requestAnimationFrame(canvasAnimation);
-			var radius = 50;
-			var circleY = 60;
-			var velocity = 1;
-			var acceleration = 0.5;
-			
-			function canvasAnimation(){
-				circleY++;
-				drawCircle(canvas.width/2, circleY, radius);
-				canvasInterval = requestAnimationFrame(canvasAnimation);
-			}
-		
-			function drawCircle(x, y, s){
-				clearCanvas();
-				context.fillStyle = "crimson";
-				context.beginPath();
-				context.arc(x, y, s, 0, 2 * Math.PI);
-				context.fill();
-				velocity += acceleration;
-				circleY += velocity;
-				if(circleY > canvas.height + radius){
-					setTimeout(reset, 250);
-					
+			var rotatingSquare = document.getElementById("web-animation");
+			rotatingSquare.animate(
+				[
+					{backgroundColor: '#000000'},
+					{backgroundColor: '#440000'},
+					{backgroundColor: '#000000'}
+				],
+				{
+					duration: 1000,
+					iterations: 7
 				}
-			}
+			)
+
 			
-			function reset(){
-				circleY = 0 - radius - 10;
-				velocity = 1;
-			}
-			
-			function clearCanvas(){
-				context.clearRect(0, 0, canvas.width, canvas.height);
-			}
 			
 			
 		
